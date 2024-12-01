@@ -175,6 +175,7 @@ even more specific, you can specify a suffix to be added to the cache key via th
 :warning: Note: specifying a `custom-cache-key` will take precedence over the `custom-cache-suffix`.
 
 ### Fork and private repositories
+
 Sometimes it's needed to use the `repositories` key in your `composer.json` to pull in forks, PRs with patches or private repositories. In this case, your GitHub Action may start failing with a `Could not authenticate against github.com` error message. To solve this, you need to add a GitHub Personal Access token, and this bit to your Action configuration:
 ```yaml
 env:
@@ -200,15 +201,16 @@ strategy:
       - "7.4"
       - "8.0"
       - "8.1"
+      - "8.2"
     dependencies:
       - "lowest"
       - "highest"
     include:
-      - php-version: "8.2"
+      - php-version: "8.3"
         composer-options: "--ignore-platform-reqs"
 
 steps:
-  - uses: "actions/checkout@v3"
+  - uses: "actions/checkout@v4"
   - uses: "shivammathur/setup-php@v2"
     with:
       php-version: "${{ matrix.php }}"
